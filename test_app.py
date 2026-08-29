@@ -69,5 +69,5 @@ def check_distance_column_is_scalar_positive():
         })
     """Helper to check that the trip_distance column is a single positive number."""
     assert 'trip_distance' in df.columns
-    assert len(df{'trip_distance'}) ==1
+    assert len(df['trip_distance']) ==1
     assert df['trip_distance'].iloc[0] > 0
