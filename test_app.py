@@ -57,3 +57,17 @@ def test_get_engine_uses_env_vars(monkeypatch):
 
     engine = app.get_engine()
     assert str(engine.url) == 'postgresql+psycopg2://testuser:***@testhost:5555/testdb'
+
+
+def check_distance_column_is_scalar_positive():
+    df = pd.DataFrame({
+        'VendorID': [1,2],
+        'Passenger_count': [1,2],
+        'RatecodeID': [1,2],
+        'payment_type': [1,2],
+        'trip_distance': [1.2, -3.4],
+        })
+    """Helper to check that the trip_distance column is a single positive number."""
+    assert 'trip_distance' in df.columns
+    assert len(df['trip_distance']) ==1
+    assert df['trip_distance'].iloc[0] > 0
